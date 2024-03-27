@@ -7,7 +7,7 @@ from google.cloud import texttospeech
 # Instantiates a client
 client = texttospeech.TextToSpeechClient()
 
-def generateAudio(label, lang="nep"):
+def generateAudio(label, lang):
 
   labels = { "fifty": "पचास", "five": "पाँच", "five hundred": "पाँच सय", "hundred": "सय", "ten": "दस", "thousand": "हजार", "twenty": "बीस" }
 

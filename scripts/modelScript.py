@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.backend import clear_session
 
 #for test time augmentation
 test_datagen = ImageDataGenerator(rescale = 1./255,
@@ -16,7 +17,7 @@ test_datagen = ImageDataGenerator(rescale = 1./255,
                                   zoom_range = 0.2,
                                   )
 
-model = load_model('keras_models/new_final.h5')  # Replace with your model path
+model = load_model('keras_models/new_final_2.h5')  # Replace with your model path
 
 def predict(fileName):
 
@@ -28,12 +29,13 @@ def predict(fileName):
     input_array = preprocess_frame(image)
 
     # Make predictions
-    predictions = model.predict_generator(input_array)
-    summed = np.sum(predictions, axis=0)
-    predicted_class = np.argmax(summed)
+    predictions = model.predict(input_array)
+    predicted_class = np.argmax(predictions)
     label = get_label(predicted_class)
 
-    return label 
+    clear_session()
+
+    return label
 
 def preprocess_frame(frame):
     
@@ -41,7 +43,7 @@ def preprocess_frame(frame):
 
     frame = cv2.resize(frame, target_size)
     frame = np.array(frame)
-    frames = np.expand_dims(frame,0)
+    frames = np.expand_dims(frame, 0)
 
     return test_datagen.flow(frames, batch_size=2)
 
