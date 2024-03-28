@@ -29,13 +29,14 @@ def predict(fileName):
     input_array = preprocess_frame(image)
 
     # Make predictions
-    predictions = model.predict(input_array)
-    predicted_class = np.argmax(predictions)
+    predictions = model.predict_generator(input_array)
+    summed = np.sum(predictions,axis=0)
+    predicted_class = np.argmax(summed)
     label = get_label(predicted_class)
 
     clear_session()
 
-    return label
+    return label, summed[predicted_class]*100
 
 def preprocess_frame(frame):
     

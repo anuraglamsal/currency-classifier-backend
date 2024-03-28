@@ -20,9 +20,9 @@ def audioRequest():
         filepath = os.path.join('uploads/', filename)
         file.save(filepath)
 
-    label = modelScript.predict(file.filename)
+    label, acc = modelScript.predict(file.filename)
 
-    segScript.bounded_image(file.filename)
+    segScript.bounded_image(file.filename, label, acc)
 
     os.remove(f'uploads/{file.filename}')
 

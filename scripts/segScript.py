@@ -25,7 +25,7 @@ def show_img(img):
     plt.imshow(img)
     plt.show()
 
-def bounded_image(filePath):
+def bounded_image(filePath, label, acc):
     test_img = Image.open(f"uploads/{filePath}")
     #test_img = Image.open("test_pic_3.jpg")
 
@@ -47,11 +47,10 @@ def bounded_image(filePath):
     morphed_tensor = (torch.from_numpy(morphed)).bool()
     
     box = masks_to_boxes(morphed_tensor.unsqueeze(0))
-    drawn_boxes = draw_bounding_boxes(t_test_img_2, box, colors="blue", width=5)
+    drawn_boxes = draw_bounding_boxes(t_test_img_2, box, colors="blue", width=5, 
+                                      labels=[f"{label}, confidence: {acc:.2f}%"], 
+                                      font="Mohave/static/Mohave-Medium.ttf", font_size=23)
 
     final_image = transforms.ToPILImage()(drawn_boxes)
 
     final_image.save("bounded_image.png", "PNG")
-
-if __name__ == "__main__":
-    bounded_image()
