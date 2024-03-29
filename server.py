@@ -48,4 +48,4 @@ def imageRequest():
     return send_file('bounded_image.png', as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(host='192.168.1.70', port=3000)
+    app.run(host='192.168.29.201', port=3000)

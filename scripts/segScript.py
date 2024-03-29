@@ -39,10 +39,12 @@ def bounded_image(filePath, label, acc):
     out_bin = (out > 0.5).float()
 
     out_nump = out_bin.squeeze(0).squeeze(0).numpy()
+    #show_img(out_nump)
 
     selem_1 = morph.disk(radius=30)
     selem_2 = morph.disk(radius=30)
     morphed = morph.opening(morph.closing(out_nump, selem_1), selem_2)
+    #show_img(morphed)
 
     morphed_tensor = (torch.from_numpy(morphed)).bool()
     
@@ -52,5 +54,6 @@ def bounded_image(filePath, label, acc):
                                       font="Mohave/static/Mohave-Medium.ttf", font_size=23)
 
     final_image = transforms.ToPILImage()(drawn_boxes)
+    #show_img(final_image)
 
     final_image.save("bounded_image.png", "PNG")
