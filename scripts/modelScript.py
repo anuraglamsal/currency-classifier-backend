@@ -1,4 +1,3 @@
-import time
 import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
@@ -17,7 +16,7 @@ test_datagen = ImageDataGenerator(rescale = 1./255,
                                   zoom_range = 0.2,
                                   )
 
-model = load_model('keras_models/new_final_2.h5')  # Replace with your model path
+model = load_model('keras_models/new_final_2.h5')
 
 def predict(fileName):
 
