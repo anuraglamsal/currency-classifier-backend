@@ -4,7 +4,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.backend import clear_session
 
-#for test time augmentation
+# For test time augmentation
 test_datagen = ImageDataGenerator(rescale = 1./255,
                                   horizontal_flip=True,
                                   rotation_range = 20,
@@ -24,7 +24,7 @@ def predict(fileName):
     image = cv2.imread(f'uploads/{fileName}');
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-    # Preprocess the image for the deep learning model
+    # Preprocess the image for the model
     input_array = preprocess_frame(image)
 
     # Make predictions
