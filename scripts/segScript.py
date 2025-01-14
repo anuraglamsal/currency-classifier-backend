@@ -22,9 +22,9 @@ def show_img(img):
 def bounded_image(filePath, label, acc):
     img = Image.open(f"uploads/{filePath}")
     
-    # for the model
+    # For the model
     transform_1 = transforms.Compose([transforms.Resize((512, 512)), transforms.Grayscale(), transforms.ToTensor()])
-    # for the picture to draw on
+    # For the picture to draw on
     transform_2 = transforms.Compose([transforms.Resize((512, 512)), transforms.PILToTensor()])
 
     t_img_1 = transform_1(img)
