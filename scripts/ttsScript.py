@@ -1,3 +1,5 @@
+# Adapted the default code in the API docs. 
+
 import os
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="currency-classification-409206-f52933d5ae63.json"
@@ -14,9 +16,6 @@ def generateAudio(label, lang):
   # Set the text input to be synthesized
   synthesis_input = texttospeech.SynthesisInput(text="Rupees " + label if lang=="eng" else "रुपैयाँ " + labels[label])
 
-  # Build the voice request, select the language code ("en-US")
-  # ****** the NAME
-  # and the ssml voice gender ("neutral")
   voice = texttospeech.VoiceSelectionParams(
       language_code='en-US' if lang=="eng" else "hi-IN",
       ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL)
