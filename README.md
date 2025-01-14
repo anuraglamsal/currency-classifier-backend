@@ -1,1 +1,1 @@
-Flask backend for currency classification.
+Flask backend for the currency classification project. 
